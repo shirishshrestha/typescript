@@ -8,3 +8,20 @@ let c: number = 2;
 console.log(a / b);
 
 console.log(c * b);
+
+function addTwo(num: number) {
+  return num + 2;
+}
+
+console.log(addTwo(2));
+
+function getUpper(val: string) {
+  return val.toUpperCase();
+}
+
+console.log(getUpper("shirish"));
+
+function signUpUser(name: string, email: string, isPaid: boolean) {}
+console.log(signUpUser("shirish", "shirish@gmai.com", false));
+
+let loginUser = (name: string, email: string, isPaid: boolean = false ) => {};
