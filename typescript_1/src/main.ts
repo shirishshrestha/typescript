@@ -1,5 +1,3 @@
-let username = " shirish";
-console.log(username);
 
 let a: number = 12;
 let b: number = 6;
