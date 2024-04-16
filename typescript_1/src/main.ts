@@ -48,3 +48,54 @@ function consoleError(errorMsg: string): void {
 function handleError(errorMsg: string): never {
   throw new Error(errorMsg);
 }
+
+const User = {
+  name: "shirish",
+  age: 20,
+  isActive: true,
+};
+
+// function createUser({ name: string, isPaid: boolean }) {}
+
+// createUser({ name: "shirish", isPaid: true });
+
+function createCourse(): { name: string; isPaid: boolean } {
+  return { name: "reactjs", isPaid: true };
+}
+
+type User = {
+  readonly _id: string;
+  name: string;
+  age: number;
+  email: string;
+  isActive: boolean;
+  creditCardDetails?: number;
+};
+
+let myUser: User = {
+  _id: "123",
+  name: "shirish",
+  age: 20,
+  email: "shirishshrestha@gmail.com",
+  isActive: true,
+};
+
+myUser.age = 21;
+
+type cardNumber = {
+  num: string;
+};
+
+type cardDate = {
+  carddate: string;
+};
+
+type cardDetails = cardNumber & cardDate & { cvv: number };
+
+// function createProfile(user: User) {
+//   console.log(user.name);
+// }
+
+// createProfile({ name: "shirish", age: 20 });
+
+export {};
