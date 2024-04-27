@@ -60,9 +60,124 @@ let nextVal: number = addOrConcat(2, 2, "concat") as number;
 
 //The DOM
 
-const image = document.querySelector("img") as HTMLImageElement;
-const imag = document.querySelector("img")!;
-const nextImage = <HTMLImageElement>document.querySelector("img");
+// const image = document.querySelector("img") as HTMLImageElement;
+// const imag = document.querySelector("img")!;
+// const nextImage = <HTMLImageElement>document.querySelector("img");
 
-image.src;
-imag.src;
+// image.src = "https://www.google.com";
+// imag.src = "https://www.google.com";
+
+class Coder {
+  // name: string;
+  // lang: string;
+  // music: string;
+
+  // constructor(name: string, lang: string, music: string) {
+  //   this.name = name;
+  //   this.lang = lang;
+  //   this.music = music;
+  // }
+  constructor(
+    public name: string,
+    private lang: string,
+    protected music: string
+  ) {
+    this.name = name;
+    this.lang = lang;
+    this.music = music;
+  }
+
+  public getLang() {
+    return `hello I'm procficient in ${this.lang} `;
+  }
+}
+
+const Shirish = new Coder("Shirish", "JS", "Rock");
+console.log(Shirish.getLang());
+// console.log(Shirish.age);
+
+class WebDev extends Coder {
+  constructor(
+    public computer: string,
+    name: string,
+    lang: string,
+    music: string
+  ) {
+    super(name, lang, music);
+  }
+
+  public getName() {
+    return `My name is ${this.name}`;
+  }
+}
+
+const Sara = new WebDev("Macbook", "Sara", "TS", "Pop");
+console.log(Sara.getName());
+
+interface Musician {
+  name: string;
+  instrument: string;
+  play(action: string): string;
+}
+
+class Guitarist implements Musician {
+  name: string;
+  instrument: string;
+
+  constructor(name: string, instrument: string) {
+    this.name = name;
+    this.instrument = instrument;
+  }
+
+  play(action: string): string {
+    return `${this.name} is playing ${this.instrument} by ${action}`;
+  }
+}
+
+const Page = new Guitarist("Jimmy", "Guitar");
+console.log(Page.play("strums"));
+
+class Peeps {
+  static count: number = 0;
+
+  static getCount() {
+    return Peeps.count;
+  }
+  public id: number;
+  constructor(public name: string) {
+    this.name = name;
+    this.id = ++Peeps.count;
+  }
+}
+
+const John = new Peeps("John");
+const Jane = new Peeps("Jane");
+console.log(Peeps.getCount());
+console.log(John.id);
+
+
+////////////////////////////////
+
+class Bands{
+  private dataState: string[];
+  constructor(){
+    this.dataState = [];
+  }
+
+  public get data(): string[]{
+    return this.dataState;
+  }
+
+  public set data(value: string[]){
+    if(Array.isArray(value) && value.every((elem) => typeof elem === "string")){
+      this.dataState = value;
+      return
+    }
+    else throw new Error("Invalid input");
+  }
+}
+
+const MyBand = new Bands();
+MyBand.data = ["Led Zeppelin", "The Beatles"];
+console.log(MyBand.data)
+
