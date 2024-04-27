@@ -155,29 +155,109 @@ const Jane = new Peeps("Jane");
 console.log(Peeps.getCount());
 console.log(John.id);
 
-
 ////////////////////////////////
 
-class Bands{
+class Bands {
   private dataState: string[];
-  constructor(){
+  constructor() {
     this.dataState = [];
   }
 
-  public get data(): string[]{
+  public get data(): string[] {
     return this.dataState;
   }
 
-  public set data(value: string[]){
-    if(Array.isArray(value) && value.every((elem) => typeof elem === "string")){
+  public set data(value: string[]) {
+    if (
+      Array.isArray(value) &&
+      value.every((elem) => typeof elem === "string")
+    ) {
       this.dataState = value;
-      return
-    }
-    else throw new Error("Invalid input");
+      return;
+    } else throw new Error("Invalid input");
   }
 }
 
 const MyBand = new Bands();
 MyBand.data = ["Led Zeppelin", "The Beatles"];
-console.log(MyBand.data)
+console.log(MyBand.data);
 
+interface TransactionObj {
+  [index: string]: number;
+}
+
+// interface TransactionObj {
+//   Pizza: number;
+//   Books: number;
+//   Job: number;
+// }
+
+const todaysTransactions: TransactionObj = {
+  Pizza: 15,
+  Books: 30,
+  Job: 100,
+};
+
+console.log(todaysTransactions.Pizza);
+console.log(todaysTransactions["Pizza"]);
+
+let prop: string = "Pizza";
+console.log(todaysTransactions[prop]);
+
+const todaysNet = (transactions: TransactionObj): number => {
+  let total = 0;
+  for (const transaction in transactions) {
+    total += transactions[transaction];
+  }
+  return total;
+};
+
+console.log(todaysNet(todaysTransactions));
+
+///////////////////////////////////////
+
+interface Student {
+  name: string;
+  GPA: number;
+  classes?: number[];
+}
+
+const student: Student = {
+  name: "Shirish",
+  GPA: 3.5,
+  classes: [1, 2, 3],
+};
+
+for (const key in student) {
+  console.log(`${key}: ${student[key as keyof Student]}`);
+}
+
+Object.keys(student).map((key) => {
+  console.log(student[key as keyof typeof student]);
+});
+
+const logStudentKey = (student: Student, key: keyof Student) => {
+  console.log(`Student ${key}: ${student[key]}`);
+};
+
+logStudentKey(student, "name");
+
+/////////////////////////////////
+
+interface Incomes{
+  [key: string]: number;
+}
+
+type Streams = "salary" | "bonus" | "sidehustle";
+
+type Income = Record<Streams, number | string>;
+
+const incomes: Income = {
+  salary: 1000,
+  bonus: 500,
+  sidehustle: 200
+}
+
+for ( const revenue in incomes){
+  console.log(incomes[revenue as keyof Income]);
+}
